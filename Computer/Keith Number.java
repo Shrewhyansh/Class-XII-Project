@@ -1,63 +1,42 @@
 
-
-
-
-
-
-
-
-
-
 import java.util.*;
-
-class BouncyNumber
-
+class Keith_number
 {
-
     public static void main()
-
     {
-
-        Scanner sc= new Scanner (System.in);
-
-        System.out.println("Enter a number :");
-
-        int a=sc.nextInt();
-
-        String num=Integer.toString(a);
-
-        int in=1,dc=1;
-
-        for(int i=0;i<num.length()-1;i++)
-
+        Scanner sc= new Scanner(System.in);
+        System.out.print("Enter the number : ");
+        int n=sc.nextInt();
+        String num=Integer.toString(n);
+        int l=num.length();
+        int a[]=new int[l];
+        int cpy=n;
+        int i=l-1;
+        while(n>0)
         {
-
-            char ch=num.charAt(i);
-
-            char ch2=num.charAt(i+1);
-
-            if(ch<=ch2)
-
-                in++;
-
-            if(ch>=ch2)
-
-                dc++;
-
+            int d=n%10;
+            a[i]=d;
+            i--;
+            n=n/10;
         }
-
-        if(in==num.length())
-
-            System.out.println("The number "+a+" is Increasing and Not Bouncy");
-
-        else if(dc==num.length())
-
-            System.out.println("The number "+a+" is Decreasing and Not Bouncy");
-
+        int s=0;
+        while(true)
+        {
+            s=0;
+            for( i=0;i<l;i++)
+                s=s+a[i];
+            if(s<cpy)
+            {
+                for(i=0;i<l-1;i++)
+                    a[i]=a[i+1];
+                a[l-1]=s;
+            }
+            else
+                break;
+        }
+        if(s==cpy)
+            System.out.println("Keith Number ");
         else
-
-            System.out.println("The number "+a+" is Bouncy");
-
+            System.out.println("Not a Keith Number ");
     }
-
 }
